@@ -11,9 +11,14 @@ mongoose.connect(process.env.MONGO_URI, )
     .then(() => console.log("MongoDB Connected"))
     .catch(err => console.log(err));
 
+    app.get("/", (req, res) => {
+        res.json({ message: "Xush kelibsiz!" });
+        console.log('Salom!');
+        
+});
 app.get("/api/message", (req, res) => {
         res.json({ message: "Hello from Backend!" });
-        console.log('hi');
+        console.log('Hello from backend');
         
 });
 
