@@ -1,21 +1,26 @@
-import express from "express";
-import mongoose from "mongoose";
-import dotenv from "dotenv";
-import cors from "cors";
-import userRoutes from "./routes/UserRouter.js"; 
+const express = require("express");
+const cors = require("cors");
+const mongoose = require("mongoose");
+require("dotenv").config();
 
-dotenv.config();
 const app = express();
-
-app.use(cors());
 app.use(express.json());
+app.use(cors());
 
-mongoose
-  .connect(process.env.MONGO_URI)
-  .then(() => console.log("MongoDB Connected"))
-  .catch((err) => console.error(err));
+mongoose.connect(process.env.MONGO_URI, )
+    .then(() => console.log("MongoDB Connected"))
+    .catch(err => console.log(err));
 
-app.use("/api/user", userRoutes);  // <-- To'g'ri ishlatish
+    app.get("/", (req, res) => {
+        res.json({ message: "Xush kelibsiz!" });
+        console.log('Salom!');
+        
+});
+app.get("/api/message", (req, res) => {
+        res.json({ message: "Hello from Backend!" });
+        console.log('Hello from backend');
+        
+});
 
-const PORT = process.env.PORT || 5001;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
